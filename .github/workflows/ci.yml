@@ -1,0 +1,41 @@
+name: ci-pip2conda
+
+on:
+  push:
+    paths:
+      - 'packages/**'
+      - '.github/workflows/ci.yml'
+    branches:
+    - main
+
+jobs:
+  build_test:
+    name: ${{ matrix.platform.name }}-${{ matrix.pyver.name }}
+    runs-on: ${{ matrix.platform.distver }}
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [
+          { name: docxcompose },
+        ]
+        pyver: [ { name: py38, distver: '3.8' }, { name: py39, distver: '3.9'}]
+        platform: [
+          { name: Windows, distver: windows-latest },
+          { name: Linux, distver: ubuntu-latest },
+          { name: macOS, distver: macos-latest }
+        ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2  # https://github.com/conda-incubator/setup-miniconda
+        with:
+          activate-environment: anaconda-client-env
+          python-version: ${{ matrix.pyver.distver }}
+          environment-file: environment.yml
+      - name: build conda package
+        env:
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+        shell: bash -l {0}
+        run: |
+          echo $ANACONDA_TOKEN
+          conda config --set anaconda_upload yes
+          conda-build -c conda-forge packages/${{ matrix.package.name }} --python=${{ matrix.pyver.distver }} --token=$ANACONDA_TOKEN --user krande

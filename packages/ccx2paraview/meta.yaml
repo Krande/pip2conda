@@ -1,0 +1,41 @@
+{% set name = "ccx2paraview" %}
+{% set version = "3.0.0" %}
+
+conda_build:
+  config_file: conda_build_config.yaml
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: f7c1b0db993132782c1c08528ec50c9a11b4baf0d7898b969e535162588c16c9
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+    - numpy
+    - vtk
+
+test:
+  imports:
+    - ccx2paraview
+
+about:
+  home: "https://github.com/calculix/ccx2paraview"
+  license: "GNU General Public v3 (GPLv3)"
+  license_family: GPL3
+  summary: "CalculiX to Paraview converter (frd to vtk/vtu)"
+
+
+extra:
+  recipe-maintainers:
+    - krande

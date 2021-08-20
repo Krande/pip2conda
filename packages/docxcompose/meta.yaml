@@ -1,0 +1,50 @@
+{% set name = "docxcompose" %}
+{% set version = "1.3.3" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 0dbf458eae260fee87f306b00f3797ecd058cf9d0aeb6e68a7057727f32bf452
+
+build:
+  number: 0
+  entry_points:
+    - docxcompose = docxcompose.command:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - lxml
+    - pip
+    - python
+    - python-docx >=0.8.8
+    - setuptools
+    - six
+  run:
+    - lxml
+    - python
+    - python-docx >=0.8.8
+    - setuptools
+    - six
+
+test:
+  imports:
+    - docxcompose
+  commands:
+    - docxcompose --help
+
+about:
+  home: "https://github.com/4teamwork/docxcompose"
+  license: MIT
+  license_family: MIT
+  license_file: 
+  summary: "Compose .docx documents"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - krande

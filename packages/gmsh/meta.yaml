@@ -1,0 +1,33 @@
+{% set name = "gmsh" %}
+{% set version = "4.8.4" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 48018fc6d62d79c5a8018c3229ec83d0a12f17284c338b9d8fa36dd01433d7ea
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+    - requests
+  run:
+    - python
+
+about:
+  home: "https://gmsh.info"
+  license: "GNU General Public v2 or later (GPLv2+)"
+  license_family: GPL2
+  license_file: 
+  summary: "Gmsh app and SDK installer. Gmsh is a three-dimensional finite element mesh generator with built-in pre- and post-processing facilities."
+
+extra:
+  recipe-maintainers:
+    - krande
