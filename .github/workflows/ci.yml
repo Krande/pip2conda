@@ -6,7 +6,7 @@ on:
       - 'packages/**'
       - '.github/workflows/ci.yml'
     branches:
-    - main
+    - master
 
 jobs:
   build_test:
