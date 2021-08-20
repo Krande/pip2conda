@@ -40,10 +40,7 @@ about:
   home: "https://github.com/4teamwork/docxcompose"
   license: MIT
   license_family: MIT
-  license_file: 
   summary: "Compose .docx documents"
-  doc_url: 
-  dev_url: 
 
 extra:
   recipe-maintainers:
