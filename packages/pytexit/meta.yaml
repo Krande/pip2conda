@@ -1,0 +1,35 @@
+{% set name = "pytexit" %}
+{% set version = "0.3.4" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/erwanp/pytexit.git
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+  preserve_egg_dir: True
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+    - six
+
+test:
+  imports:
+    - pytexit
+
+about:
+  home: "https://github.com/erwanp/pytexit"
+  license: "CeCILL FREE SOFTWARE LICENSE AGREEMENT"
+  summary: "Convert a Python expression to a LaTeX formula."
+
+extra:
+  recipe-maintainers:
+    - krande
