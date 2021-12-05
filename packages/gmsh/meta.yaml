@@ -1,5 +1,5 @@
 {% set name = "gmsh" %}
-{% set version = "4.8.4" %}
+{% set version = "4.9.0.post1" %}
 
 package:
   name: "{{ name|lower }}"

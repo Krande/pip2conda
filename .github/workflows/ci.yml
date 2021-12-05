@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         package: [
-          { name: pytexit },
+          { name: gmsh },
         ]
         pyver: [ { name: py38, distver: '3.8' }, { name: py39, distver: '3.9'}]
         platform: [
