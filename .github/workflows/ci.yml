@@ -16,9 +16,12 @@ jobs:
       fail-fast: false
       matrix:
         package: [
-          { name: gmsh },
+          { name: pytexit },
+          { name: docxcompose },
+          { name: pyquaternion },
+          { name: ccx2paraview },
         ]
-        pyver: [ { name: py38, distver: '3.8' }, { name: py39, distver: '3.9'}]
+        pyver: [ { name: py310, distver: '3.10'}]
         platform: [
           { name: Windows, distver: windows-latest },
           { name: Linux, distver: ubuntu-latest },
