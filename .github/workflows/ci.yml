@@ -16,8 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         package: [
-          { name: pyquaternion },
-          { name: pytexit }
+          { name: test },
+#          { name: pytexit }
         ]
         pyver: [ { name: py310, distver: '3.10'}]
         platform: [
@@ -39,4 +39,4 @@ jobs:
         run: |
           echo $ANACONDA_TOKEN
           conda config --set anaconda_upload yes
-          conda-build -c conda-forge packages/${{ matrix.package.name }} --python=${{ matrix.pyver.distver }} --token=$ANACONDA_TOKEN --user krande
+          conda-build -c conda-forge packages/${{ matrix.package.name }} --python=${{ matrix.pyver.distver }} --token=$ANACONDA_TOKEN --user krande --label dev,main
