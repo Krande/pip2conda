@@ -17,6 +17,7 @@ jobs:
       matrix:
         package: [
           { name: pyquaternion },
+          { name: pytexit }
         ]
         pyver: [ { name: py310, distver: '3.10'}]
         platform: [
